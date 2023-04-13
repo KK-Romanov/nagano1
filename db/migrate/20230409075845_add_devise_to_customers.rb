@@ -31,7 +31,7 @@ class AddDeviseToCustomers < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
+      t.string :name
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false
