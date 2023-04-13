@@ -136,7 +136,7 @@ Rails.application.routes.draw do
   
    scope module: :public do
      resources :items
-     get "/items" => "items#index", as: "index"
+     get "/items" => "public/items#index", as: "lot"
      get "/items/:id" => "items#show", as: "show"
    end
 
