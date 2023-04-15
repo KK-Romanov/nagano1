@@ -21,15 +21,14 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
   scope module: :public do 
-   resources :registrations
-      get "/customers/sign_up" => "registrations#new"
-      get "/customers" => "registrations#create"
-   resources :sessions
-      get "/customers/sign_in" => "sessions#new"
-	    get "/customers/sign_in" =>  "sessions#create"
-      get "/customers/sign_out" => "sessions#destroy"
+  # resources :registrations
+      # get "/customers/sign_up" => "registrations#new"
+      # get "/customers" => "registrations#create"
+  # resources :sessions
+  #     get "/customers/sign_in" => "sessions#new"
+  #     get "/customers/sign_in" =>  "sessions#create"
+  #     get "/customers/sign_out" => "sessions#destroy"
    resources :addresses  
       get "/addresses" => "addresses#index"
       get "/addresses/:id/edit" => "addresses#edit"
@@ -62,4 +61,8 @@ Rails.application.routes.draw do
      get "/items" => "public/items#index", as: "lot"
      get "/items/:id" => "items#show", as: "show"
    end
+
+  
+  
+  
 end

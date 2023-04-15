@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
-    before_action :customer_state, only: [:create]
+    before_action :configure_sign_in_params, only: [:create]
+    # before_action :customers_state, only: [:create]
   
 
-
+    def after_sign_in_path_for(resource)
+      lot_path 
+      # (current_customers.id)
+    end
+    def after_sign_out_path_for(resource)
+       flash[:notice] = "Signed out successfully."
+      root_path
+    end
+    
   # GET /resource/sign_in
   # def new
   #   super
@@ -21,7 +29,11 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  #     protected
+  protected
+  
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
+  end
   # # 退会しているかを判断するメソッド
   # def customer_state
   #   ## 【処理内容1】 入力されたemailからアカウントを1件取得

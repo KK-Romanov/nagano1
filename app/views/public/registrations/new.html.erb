@@ -1,29 +1,98 @@
-<h2>Sign up</h2>
+<main>
+<div class="container">
+    <div class="w100">
+    </div>
+  <!--<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">-->
+    <div class = "text-center">
+    <h2>新規会員登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: resource, url: registration_path(resource_name) do |f| %>
+  <!--%= form_with model: @customer, url: customer_registration_path do |f| %>-->
   <%= render "public/shared/error_messages", resource: resource %>
+<div class="auto">
+   <p>
+   <div class= "field">
+      <%= f.label :名前 %>
+      <span>
+        (姓)
+           <%= f.text_field :first_name %>
+      <span>
+        (名)  
+           <%= f.text_field :last_name %> 
+    </div>
+    </p>
+    
+    <p>
+    <div class= "field">
+       <%= f.label :フリガナ %>
+       <span>
+         (セイ)
+            <%= f.text_field :first_name_kana, :size=>"25" %>
+       <span>
+         (メイ) 
+            <%= f.text_field :last_name_kana,:size=>"25" %> 
+    </div>
+    </p>
+    
+    <div class="field">
+        <%= f.label :メールアドレス %>
+        <span>
+        <%= f.email_field :email,:size=>"25", autofocus: true, autocomplete: "email" %>
+    </div>
+    
+    <p>
+      <div class="field">
+        <%= f.label :郵便番号 %>(ハイフンなし)
+        <span>
+        <%= f.text_field :postal_code,:size=>"25" %>
+      </div>
+    </p>
+    
+    <div class="field">
+      <%= f.label :住所 %>
+      <span>
+      <%= f.text_field :address, :size=>"60"%>
+    </div>
+    
+    <p>
+      <div class="field">
+        <%= f.label :電話番号 %>(ハイフンなし)
+      <span>
+        <%= f.text_field :telephone_number,:size=>"25" %>
+      </div>
+    </p>
+    
+    <div class="field">
+      <%= f.label :パズワード %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+        <span>
+        <%= f.password_field :password, :size=>"25", autocomplete: "new-password" %>
+    </div>
+  
+    <p> 
+      <div class="field">
+        <%= f.label :パズワード %>(確認用)<span>
+        <%= f.password_field :password_confirmation, :size=>"25", autocomplete: "new-password" %>
+      </div>
+    </p>
+    
+      <div class="actions">
+      <div class='form-group'>
+        <%= f.submit 'Sign up', class:'btn btn-sm btn-success' %>
+      </div>
+      </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+<!--%= render "public/shared/links" %>-->
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+ 
+     
+      <!--t.string :encrypted_password, null: false-->
