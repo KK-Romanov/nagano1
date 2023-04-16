@@ -7,12 +7,15 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :sessions, only: [:new, :create, :destroy] 
-    resources :homes, only: [:top]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :order_details, only: [:update]
+    end
+    scope module: :admin do 
+    resources :homes, only: [:top]
+    get "/admin" => "homes#top", as: "top"
     end
   # --------------------------------------------------------------------------
   
