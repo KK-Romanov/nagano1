@@ -1,11 +1,40 @@
-<h1>商品新規登録画面</h1>
-<!--<p>Find me in app/views/admin/items/new.html.erb</p>-->
-
-<p>商品画像</p>
-<p>商品名</p>
-<p>商品説明</p>
-<p>ジャンル</p>
-<p>税抜き価格</p>
-<p>販売ステータス</p>
-
-新規登録
+<div class="container mt-5">
+  <div class="w100">
+    <div class="auto">
+        <h1>商品新規登録画面</h1>
+        <!--<p>Find me in app/views/admin/items/new.html.erb</p>-->
+        <p>
+        </p>    
+         <%= form_with model: @item, url: 'admin/items/new', method: :post do |f| %>
+        <p>商品画像
+        <!--%= f.label :image%>-->
+        <%= f.file_field :image, accept: "image/*", :size=> "40" %>
+        <!--%= image_tag items.image,variant(resize: '200x200')  %>-->
+        </p>
+        <p>商品名
+        <%= f.text_field :name, :size=> "40" %>
+        </p>
+        <p>商品説明
+        <%= f.text_field :introduction, :size=> "40" %><br>
+        </p>
+        <p>ジャンル
+        <!--%= f.select :genres_id, options_from_collection_for_select(Genres.all, :id, :name) %>-->
+        </p>
+        <p>税抜き価格
+        <%= f.text_field :price, :size=> "40" %>円<br>
+        </p>
+        <p>販売ステータス
+        <%= f.radio_button :is_active, "TURE" %>
+        <%= f.label :is_active_TURE, "販売中" %>
+        
+        <%= f.radio_button :is_active, "FALSE" %>
+        <%= f.label :is_active_FALSE, "販売停止中" %>
+        </p>
+        
+         <div class='form-group'>
+           <%= f.submit '新規登録', class:"btn btn-success" %></br>
+         </div>
+        <% end %>
+    </div>
+  </div>
+</div>

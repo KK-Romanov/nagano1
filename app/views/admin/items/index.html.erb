@@ -1,3 +1,14 @@
 <div class = "containar mt-">
 <h1>商品一覧商</h1>
 
+<% @item.each do |items| %>
+
+  <p>タイトル</p>
+  <span>
+    <%=link_to item.title, new_admin_item_path(item.id) %>
+  </span>
+  
+  <!--<p>画像</p>-->
+  <!--%= image_tag list.image, size: "300x300" %>-->
+<% end %>
+
