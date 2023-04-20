@@ -17,4 +17,8 @@
           production_pending: "製作待ち"
           in_production: "製作中" 
           production_complete: "製作完了" 
-      
+          
+      item:
+        is_active:
+          ture: "販売中"
+          false: "販売停止中"

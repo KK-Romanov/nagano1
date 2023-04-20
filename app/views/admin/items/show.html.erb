@@ -1,1 +1,32 @@
-<h1>商品詳細画面</h1>
+<div class="container mt-5">
+        
+        <h1>商品詳細</h1>
+  <div class="row row-cols-3">
+       <div class="col-6 " >
+          <%= image_tag @item.image, size: "200x200" %>
+        </div>
+
+           <div class="col-2">
+             <tr><b>
+                 商品名<br>
+                 商品説明<br>
+                 ジャンル<br>
+                 税抜価格<br>
+                 ステータス
+                 </b>
+             </tr>
+           </div>
+           
+           <div class="col-4">
+              <td>
+                  <%= @item.name %><br>
+                  <%= @item.introduction %><br>
+                  <ジャンル><br>
+              　   <%= @item.price %>円<br>
+              　   <%=@item.is_active %><br>
+              </td>
+            </div>　
+   
+  </div>
+</div>
+

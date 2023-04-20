@@ -1,2 +1,21 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<div class = "container mt-5">
+<h1>ジャンル一覧・追加</h1>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class= "field">
+      <%= f.label :ジャンル名 %>
+      <span>
+           <%= f.text_field :name %>
+      <span>
+           
+           <div class='form-group'>
+             <%= f.submit "新規登録", class:"btn btn-success" %></br>
+           </div>
+</div>
+
+<b>ジャンル</b>
+
+            <div class='form-group'>
+            　 <%= f.submit "編集する", class:"btn btn-success" %></br>
+           </div>
+           <% end %>

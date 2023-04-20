@@ -11,16 +11,16 @@ class Admin::ItemsController < ApplicationController
 
 
   def create
-     @items  = Items.new(book_params)
+     @item = Item.new(item_params)
         # @book.user_id = current_user.id
-        @user = current_user
+        # @customer = current_custumer.id
      if @item.save
          flash[:notice] = "successfully"
          redirect_to admin_items_path
      else
-        @books = Book.all  
+        @items = Item.all  
         flash[:notice] = "error"
-        render :index
+        render :admin_zaku_path
      end
   end
 
