@@ -20,5 +20,5 @@
           
       item:
         is_active:
-          ture: "販売中"
-          false: "販売停止中"
+          'true': "販売中"
+          'false': "販売停止中"
