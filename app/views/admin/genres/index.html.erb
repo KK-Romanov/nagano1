@@ -12,10 +12,11 @@
                 <%= f.submit "新規登録", class:"btn btn-success" %></br>
             </div>
 </div>
+<% end %>
 
 <b>ジャンル</b>
-         
-            <div class='form-group'>
-            　 <%= f.submit "編集する", class:"btn btn-success" %></br>
-           </div>
-<% end %>
+<br>
+            <% @genres.each do |genre| %>
+            <%= genre.name %>
+            <%= link_to "編集する", edit_admin_genre_path(genre.id), class:"btn btn-success" %></br>
+ <% end %>

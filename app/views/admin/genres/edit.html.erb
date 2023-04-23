@@ -1,8 +1,10 @@
+<div class = "container mt-5">
 <h1>ジャンル編集</h1>
 <span>
-    
-    <div class= "field">
-      <%= f.label :ジャンル名 %>
+    <%= form_with model: @genres, url: admin_genre_path, method: :patch do |f| %>
+
+    <div >
+               <%= f.label :ジャンル名 %>
           <span>
                <%= f.text_field :name %>
           <span>
@@ -11,3 +13,4 @@
              <%= f.submit "変更保存", class:"btn btn-success" %></br>
            </div>
 </span>
+<% end %>

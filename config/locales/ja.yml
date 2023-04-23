@@ -22,3 +22,8 @@
         is_active:
           'true': "販売中"
           'false': "販売停止中"
+          
+    # activerecord:
+    #   errors:
+    #     messages:
+    #       record_invalid: "バリデーションに失敗しました: %{errors}"
