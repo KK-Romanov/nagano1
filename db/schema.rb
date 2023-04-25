@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
   end
 
   create_table "addresses", force: :cascade do |t|
+    t.integer "customer_id", null: false
     t.string "name", null: false
     t.string "postal_code"
     t.string "address", null: false
@@ -61,6 +62,8 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
   end
 
   create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -93,15 +96,18 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_active", default: true, null: false
   end
 
   create_table "oder_details", force: :cascade do |t|
+    t.integer "oder_id", null: false
+    t.integer "item_id", null: false
     t.integer "amount", null: false
     t.integer "tax_price", null: false
     t.integer "production_status", default: 0, null: false
@@ -110,6 +116,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
   end
 
   create_table "oders", force: :cascade do |t|
+    t.integer "customer_id", null: false
     t.string "delivery_postal_code", null: false
     t.string "delivery_address", null: false
     t.string "delivery_name", null: false

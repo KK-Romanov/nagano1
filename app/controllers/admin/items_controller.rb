@@ -1,11 +1,13 @@
 class Admin::ItemsController < ApplicationController
   def new
     @item = Item.new
+    @genres = Genre.all
   end
 
 
   def index
     @items = Item.all
+    @genre = Genre.new
     
   end
 
@@ -18,17 +20,17 @@ class Admin::ItemsController < ApplicationController
          flash[:notice] = "successfully"
          redirect_to admin_items_path
      else
-        @items = Item.all  
-        flash[:notice] = "error"
-        render :admin_zaku_path
+         @items = Item.all  
+        # flash[:notice] = "error"
+        render :new
      end
   end
 
 
   def show
      @item = Item.find(params[:id])
+     @genre = Genre.all
   end
-
 
   def edit
       @item = Item.find(params[:id])
@@ -48,7 +50,7 @@ class Admin::ItemsController < ApplicationController
 
 private
      def item_params
-        params.require(:item).permit(:name, :introduction, :image, :price, :is_active) 
+        params.require(:item).permit(:name, :introduction, :genre_id, :image, :price, :is_active) 
      end
   
 
