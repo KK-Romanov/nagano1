@@ -10,18 +10,16 @@
           in_production: "製作中"
           preparing: "発送準備中"
           shipped: "発送済み" 
-          
       oder_details:
         production_status:
           production_not_possible: "製作不可"
           production_pending: "製作待ち"
           in_production: "製作中" 
           production_complete: "製作完了" 
-          
-      items:
-        is_active:
-          'TURE': "販売中"
-          'FALSE': "販売停止中"
+      # items:
+      #   is_active:
+      #     true: "販売中"
+      #     false: "販売停止中"
           
           
           

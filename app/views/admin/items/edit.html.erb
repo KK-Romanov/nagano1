@@ -23,11 +23,11 @@
         <%= f.text_field :price, :size=> "40" %>円<br>
         </p>
         <p>販売ステータス
-        <%= f.radio_button :is_active, "TURE" %>
-        <%= f.label :is_active_TURE, "販売中" %>
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active, "販売中" %>
         
-        <%= f.radio_button :is_active, "FALSE" %>
-        <%= f.label :is_active_FALSE, "販売停止中" %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active, "販売停止中" %>
         </p>
         
          <div class='form-group'>

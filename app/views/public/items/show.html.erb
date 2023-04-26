@@ -23,6 +23,10 @@
                   <%= @item.introduction %><br>
                   <%= @item.genre.name %><br>
               　   <%= @item.price %>円<br>
-              　   <%=@item.is_active %><br>
+              　   <% if @item.is_active? %> 
+                  <span>販売中</span>
+                  <% else %>
+                  <span>販売停止中</span>
+                  <% end %>
               </td>
             </div>　
