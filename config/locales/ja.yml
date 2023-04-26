@@ -18,10 +18,12 @@
           in_production: "製作中" 
           production_complete: "製作完了" 
           
-      item:
+      items:
         is_active:
           'TURE': "販売中"
           'FALSE': "販売停止中"
+          
+          
           
     # activerecord:
     #   errors:

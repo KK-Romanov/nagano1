@@ -5,35 +5,25 @@
 <table>
    <div class = "row">
     <tr>
-    <b>   
-       <div class = col-md-2-offset-1>
-        <td>商品ID</td><span>
+    <b>  
+        <% @items.each do |item| %>
+        <div class = col-md-3-offset-1>
+        <td>画像</td><span>
             
-        <div class = col-md-2>
+            <%=link_to item_path(item.id) do %>
+            <%= image_tag item.get_image, size: "200x200" %>
+            <% end %>
+        </div>    
+        <div class = col-md-3-offset-1>
         <td>商品名</td><span>
-            
-        <div class = col-md-2>
-        <td>税抜き価格</td><span>
-
-        <div class = col-md-2>    
-        <td>ジャンル</td><span>
-    
-        
-        <div class = col-md-2-offset-1>
-        <td>ステータス</td><span>
+            <%= item.name %>
+        </div>    
+        <div class = col-md-3-offset-1>
+        <td>￥</td><span>
+            <%= item.price %>
+        </div>
+        <% end %>
     </b>
     </tr>
+  </div>
 </table>
-    
-<!--% @items.each do |items| %>-->
-
-<!--  <p>タイトル</p>-->
-<!--  <span>-->
-<!--    %= items.name %>-->
-<!--  </span>-->
-  
-<!--  <p>画像</p>-->
-<!--  %= image_tag items.image, size: "200x200" %>-->
-<!--% end %>-->
-
-<!--</div>-->

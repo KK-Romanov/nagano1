@@ -1,0 +1,73 @@
+<div class = "containar mt-5">
+<h1>商品編集</h1>
+
+ <p>
+        </p>    
+         <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+        <p>商品画像
+        <!--%= f.label :image%>-->
+        <%= f.file_field :image, accept: "image/*", :size=> "40" %>
+        <!--%= image_tag items.image,variant(resize: '200x200')  %>-->
+        </p>
+        <p>商品名
+        <%= f.text_field :name, :size=> "40" %>
+        </p>
+        <p>商品説明
+        <%= f.text_field :introduction, :size=> "40" %><br>
+        </p>
+        <p>ジャンル
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all,
+        :id, :name), include_blank: "選択して下さい" %>
+        </p>
+        <p>税抜き価格
+        <%= f.text_field :price, :size=> "40" %>円<br>
+        </p>
+        <p>販売ステータス
+        <%= f.radio_button :is_active, "TURE" %>
+        <%= f.label :is_active_TURE, "販売中" %>
+        
+        <%= f.radio_button :is_active, "FALSE" %>
+        <%= f.label :is_active_FALSE, "販売停止中" %>
+        </p>
+        
+         <div class='form-group'>
+           <%= f.submit '変更を保存', class:"btn btn-success" %></br>
+         </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--      <div class="row row-cols-3">-->
+<!--       <div class="col-6 " >-->
+<!--          %= image_tag @item.image, size: "200x200" %>-->
+<!--        </div>-->
+
+<!--           <div class="col-2">-->
+<!--             <tr><b>-->
+<!--                 商品名<br>-->
+<!--                 商品説明<br>-->
+<!--                 ジャンル<br>-->
+<!--                 税抜価格<br>-->
+<!--                 ステータス-->
+<!--                 </b>-->
+<!--             </tr>-->
+<!--           </div>-->
+           
+<!--           <div class="col-4">-->
+<!--              <td>-->
+<!--                  %= @item.name %><br>-->
+<!--                  %= @item.introduction %><br>-->
+<!--                  %= @item.genre.name %><br>-->
+<!--              　   %= @item.price %>円<br>-->
+<!--              　   %=@item.is_active %><br>-->
+<!--              </td>-->
+<!--            </div>　-->
+   
+<!--  </div>-->
+<!--</div>-->

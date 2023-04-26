@@ -10,7 +10,23 @@
 <div class = "container">
     
 <h1><b>新着商品</h1>
-    
-    <p>items details</p>
-    
+
+<% @items.each do |items| %>
+<%=link_to items_path(@item.id) do %>
+            <%= image_tag @item.get_image, size: "100x100" %>
+            <% end %>
+        </div>    
+        <div class = col-md-3-offset-1>
+        <td>商品名</td><span>
+            <%= @item.name %>
+        </div>    
+        <div class = col-md-3-offset-1>
+        <td>￥</td><span>
+            <%= @item.price %>
+        </div>
+        <% end %>
     <%= link_to "全ての商品を見る＞",lot_path %>
+    <!-- %= image_tag @item.image, size: "200x200" %>-->
+    <!--<p>%= @items.name %></p>-->
+    <!-- <p>%= @item.price %>円<br></p>-->
+    
