@@ -1,31 +1,33 @@
 <div class = "container mt-5">
-<div class = "text-center">
+    <div class = "text-center">
 
-<h2>ようこそ、ながのCAKEへ！</h2><br>
-<h4>このサイトは、ケーキ販売のECサイトになります。<br>
-会員でない方も商品の閲覧はできますが、<br>
-購入するには会員登録が必要になります。</p>
-</h4>
-</div>
-<div class = "container">
-    
-<h1><b>新着商品</h1>
-
-<% @items.each do |items| %>
-<%=link_to items_path(@item.id) do %>
-            <%= image_tag @item.get_image, size: "100x100" %>
-            <% end %>
-        </div>    
-        <div class = col-md-3-offset-1>
-        <td>商品名</td><span>
-            <%= @item.name %>
-        </div>    
-        <div class = col-md-3-offset-1>
-        <td>￥</td><span>
-            <%= @item.price %>
+        <h2>ようこそ、ながのCAKEへ！</h2><br>
+        <h4>このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入するには会員登録が必要になります。</p>
+        </h4>
+    </div>
+    <div class = "container mt-5">
+    <h1><b>新着商品</h1>
+    <div class = "col-md-7">
+        <% @items.each do |item| %>
+        <div class ="blog-box">
+        <div class = "col d-flex">
+            <%=link_to item_path(item.id) do %>
+              <%= image_tag item.get_image, size: "125x125" %>
+              <%= item.name %><br>
+              <td>￥</td>
+              <%= item.price %>
+              <% end %><br>
+             <% end %>
         </div>
-        <% end %>
-    <%= link_to "全ての商品を見る＞",lot_path %>
+        </div> 
+     </div>
+</div>
+
+    <%= link_to "全ての商品を見る>",lot_path %>
+</div>    
+</div>
     <!-- %= image_tag @item.image, size: "200x200" %>-->
     <!--<p>%= @items.name %></p>-->
     <!-- <p>%= @item.price %>円<br></p>-->

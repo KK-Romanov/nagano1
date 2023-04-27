@@ -15,3 +15,4 @@ class Public::HomesController < ApplicationController
 
 
 end
+    # @item = Item.find(params[:id])
