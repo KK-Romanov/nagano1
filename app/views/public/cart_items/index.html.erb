@@ -5,5 +5,25 @@
 <p>単価</p>
 <span>
 <p>数量</p>
+<%= f.select :amount, *[1..3] %>
 <span>
-<p>小計</p>    
+<table> 
+  <thead>
+      <th>単価(税込)</th>
+      <th>小計</th>
+  </thead>
+  <tbody>
+  <% @cart_items.each do |cart_item| %>
+      <tr>
+                  <!--<td>%= (cart_item.item.price * 1.1).floor %></td>-->
+                  <!--上記参考文＝ｒｂ.に記述したため下記に変更-->
+          <td><%= cart_item.item.with_tax_price%></td>
+                  <!--<td>%= (cart_item.item.price * 1.1).floor * cart_item.amount %></td>-->
+                   <!--上記参考文＝ｒｂ.に記述したため下記に変更-->
+          <td><%= cart_item.subtotal%></td>
+          
+          <% @合計金額 +=  (cart_item.item.price * 1.1).floor * cart_item.amount %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

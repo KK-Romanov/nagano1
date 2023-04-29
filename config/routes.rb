@@ -33,31 +33,31 @@ Rails.application.routes.draw do
   #     get "/customers/sign_in" => "sessions#new"
   #     get "/customers/sign_in" =>  "sessions#create"
   #     get "/customers/sign_out" => "sessions#destroy"
-   resources :addresses  
+  # addresses  
       get "/addresses" => "addresses#index"
       get "/addresses/:id/edit" => "addresses#edit"
       get "/addresses" => "addresses#create"
       get "/addresses/:id" => "addresses#update"
       get "/addresses/:id" => "addresses#destroy"
-    resources :orders 
+    # orders 
       get  "/orders/new" => "orders#new"
       get "/orders/confirm"  => "orders#confirm"
       get "/orders/complete" => "orders#complete"
       get "/orders" => "orders#index"
       get "/orders/:id"  => "orders#show"
       get "orders/create" 
-    resources :cart_items 
+    # cart_items 
       get "/cart_items" => "cart_items#index" 
       get 'cart_items/update'
       get 'cart_items/destroy'
       get 'cart_items/destroy_all'
       get 'cart_items/create'
-    resources :customers 
+    # customers 
       get "/customers/my_page" => "customers#show"
-      get "/customers/information/edit"  => "customers/edit"
-      get "/customers/information" => "/customers#update"
-      get "/customers/unsubscribe" => "customers#unsubscribe"
-      get "/customers/withdraw" => "customers#withdraw"
+      get "/customers/information/edit"  => "customers#edit"
+      patch "/customers/information" => "customers#update"
+      get "/customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
+      patch  "/customers/withdraw" => "customers#withdraw", as:"withdraw"
     resources :homes
       root to: 'homes#top'
       get "/about" => "homes#about", as: "about"

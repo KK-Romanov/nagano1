@@ -2,31 +2,21 @@
 <div class = "containar mt-5">
 <h1>商品一覧</h1>
 
-<table>
-  <div class = "table">
             <% @items.each do |item| %>
-    <thead>
-       <div class = "col d-flex">
-        <tr>
-         <b>  
-             <div class = col-md-3-offset-1>
-              <td>画像</td><span>
-                
-                <%=link_to item_path(item.id) do %>
-                <%= image_tag item.get_image, size: "200x200" %>
-                <% end %>
-             </div>    
-            <div class = col-md-3-offset-1>
-                <td>商品名</td><span>
-                <%= item.name %>
-            </div>    
-            <div class = col-md-3-offset-1>
-                <td>￥</td><span>
-                <%= item.price %>
-            </div>
+            <tr>
+                 <b>  
+                <td>  
+               <div class = "col d-flex">
+                    <%=link_to item_path(item.id) do %>
+                    <%= image_tag item.get_image, size: "200x200" %>
+                    <% end %></td>
+                  <br>
+                    <td><%= item.name %></td>
+                  <br>
+                    <td>￥<%= item.price %></td>
+                 <br>
+                </b>
             <% end %>
-         </b>
-        </tr>
-     </thead>
+                </div>
+            </tr>
   </div>
-</table>
