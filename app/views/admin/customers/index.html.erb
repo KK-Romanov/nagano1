@@ -1,18 +1,35 @@
 <div class = "container mt-5">
     
-<h1>会員一覧</h1>
-
-<div class = "table">
+      <h1>会員一覧</h1>
+    
+        
+        
+<table class = "table">
     <thead>
-        <tr>会員ID</tr>
-        <tr>氏名</tr>
-        <tr>メールアドレス</tr>
-        <tr>ステータス</tr>
-    </thead><br>
-         <tbody>
-        　 <td>cc</td><br>
-        　 <td>vv</td><br>
-        　 <td>bb</td><br>
-        　 <td>gg</td>
-         </tbody>
+      <tr>
+        <th scope = "col">会員ID</th>
+        <th scope = "col">氏名</th>
+        <th scope = "col">メールアドレス</th>
+        <th scope = "col">ステータス</th>
+      </tr>
+    </thead>
+      <tbody>         
+        <% @customers.each do |customer| %>
+        <tr>
+           <td><%= customer.id %></td>
+           <td><%= link_to  admin_customer_path(customer.id) do %>
+              <%= customer.first_name %>
+              <%= customer.last_name %>
+              <% end %>
+           </td>
+           <td><%= customer.email %></td>
+           <td><% if customer.is_deleted? %></td>
+           <span>退会</span>
+               <% else %>
+            <span>有効有効</span>
+               <% end %>
+        </tr>
+      </tbody>
+  
+     <% end %>
 </div>

@@ -1,2 +1,33 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class = "cantainer mt-5">
+<h1>会員情報</h1>
+
+     <tr>
+          <th><b>氏名</b></th>
+            <td><%= @customer.last_name %>
+                <%= @customer.first_name %></td>
+             <br>
+          <th><b>カナ</b></th>
+            <td><%= @customer.last_name_kana %>
+            <%= @customer.first_name_kana %></td>
+             <br>
+          <th><b>郵便番号</b></th>
+             <td><%= @customer.postal_code %></td>
+              <br>
+          <th><b>住所</b></th>
+             <td><%= @customer.address %></td>
+              <br>
+          <th><b>電話番号</b></th>
+             <td><%= @customer.telephone_number %></td>
+              <br>
+          <th><b>メールアドレス</b></th>
+             <td><%= @customer.email %></td>
+              <br>
+           <th><b>会員ステータス</b></th>
+             <td><% if @customer.is_deleted? %></td>
+             <span>退会</span>
+               <% else %>
+            <span>有効</span>
+               <% end %>
+     </tr>
+
+     <!--%= link_to   %>-->

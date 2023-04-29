@@ -3,8 +3,8 @@
 class Public::SessionsController < Devise::SessionsController
     before_action :configure_sign_in_params, only: [:create]
   
-    # before_action :customers_state, only: [:create]
-    before_action :reject_inactive_user, only: [:create]
+    # before_action :customer_state, only: [:create]
+    # before_action :reject_inactive_user, only: [:create]
     
     def after_sign_in_path_for(resource)
       lot_path 
@@ -35,19 +35,21 @@ class Public::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
   end
-  def reject_inactive_user
-    @customer = Customer.find_by(name: params[:customer][:email])
-    if @user
-      if @user.valid_password?(params[:customer][:password]) && !@customer.is_deleted
-        redirect_to new_user_session_path
-      end
-    end
-  end
+  # def customer_state
+  # # def reject_inactive_user!
+  #   @customer = Customer.find_by(email: params[:customer][:email])
+  #   # return if !@customer
+  #   if @customer
+  #     if @customer.valid_password?(params[:customer][:password]) && !@customer.is_deleted
+  #       redirect_to new_customer_session_path
+  #     end
+  #   end
+  # end
 end
 
 # 下記参考
     #   # 退会しているかを判断するメソッド
-    #   def customer_state
+    #  
     #     ## 【処理内容1】 入力されたemailからアカウントを1件取得
     #     @customer = Customer.find_by(email: params[:customer][:email])
     #     ## アカウントを取得できなかった場合、このメソッドを終了する
