@@ -1,7 +1,12 @@
 <div class = "cantainer mt-5">
-<h1>会員情報</h1>
+<h1><%= @customer.first_name %>
+    <%= @customer.last_name %>
+     さんの会員詳細</h1>
 
      <tr>
+          <th><b>会員ID</b></th>
+            <td><%= @customer.id %></td>
+            <br>
           <th><b>氏名</b></th>
             <td><%= @customer.last_name %>
                 <%= @customer.first_name %></td>
@@ -29,5 +34,7 @@
             <span>有効</span>
                <% end %>
      </tr>
-
-     <!--%= link_to   %>-->
+      <br>
+     <%= link_to edit_admin_customer_path, class: "badge rounded-pill bg-dark text-warning" do %>
+     編集する
+     <% end %>

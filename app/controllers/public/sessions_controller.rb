@@ -3,7 +3,8 @@
 class Public::SessionsController < Devise::SessionsController
     before_action :configure_sign_in_params, only: [:create]
   
-    # before_action :customer_state, only: [:create]
+    before_action :customer_state, only: [:create]
+    
     # before_action :reject_inactive_user, only: [:create]
     
     def after_sign_in_path_for(resource)
@@ -35,17 +36,32 @@ class Public::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
   end
-  # def customer_state
-  # # def reject_inactive_user!
-  #   @customer = Customer.find_by(email: params[:customer][:email])
-  #   # return if !@customer
-  #   if @customer
-  #     if @customer.valid_password?(params[:customer][:password]) && !@customer.is_deleted
-  #       redirect_to new_customer_session_path
-  #     end
-  #   end
-  # end
+  
+  def customer_state
+  # def reject_inactive_user!
+    # if @customer
+    @customer = Customer.find_by(email: params[:customer][:email])
+     return if !@customer
+     if @customer.is_deleted?
+        redirect_to new_customer_registration_path
+     end
+     
+     unless @customer.valid_password?(params[:customer][:password])
+         
+         redirect_to new_customer_session_path
+     end
+  end
+ 
 end
+
+#  && = *
+# 考え方は
+# T＝1、F＝0
+# or = +  
+# 記号= ||
+
+#  xand  
+#  xor
 
 # 下記参考
     #   # 退会しているかを判断するメソッド

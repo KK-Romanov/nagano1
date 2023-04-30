@@ -26,13 +26,6 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   scope module: :public do 
-  # resources :registrations
-      # get "/customers/sign_up" => "registrations#new"
-      # get "/customers" => "registrations#create"
-  # resources :sessions
-  #     get "/customers/sign_in" => "sessions#new"
-  #     get "/customers/sign_in" =>  "sessions#create"
-  #     get "/customers/sign_out" => "sessions#destroy"
   # addresses  
       get "/addresses" => "addresses#index"
       get "/addresses/:id/edit" => "addresses#edit"
@@ -46,12 +39,8 @@ Rails.application.routes.draw do
       get "/orders" => "orders#index"
       get "/orders/:id"  => "orders#show"
       get "orders/create" 
-    # cart_items 
-      get "/cart_items" => "cart_items#index" 
-      get 'cart_items/update'
-      get 'cart_items/destroy'
-      get 'cart_items/destroy_all'
-      get 'cart_items/create'
+    resources :cart_items, only: [:index, :update, :destroy, :create]  
+      delete 'cart_items/destroy_all'
     # customers 
       get "/customers/my_page" => "customers#show"
       get "/customers/information/edit"  => "customers#edit"
