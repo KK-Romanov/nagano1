@@ -8,7 +8,7 @@
                 <td>  
                <div class = "col d-flex">
                     <%=link_to item_path(item.id) do %>
-                    <%= image_tag item.get_image, size: "200x200" %>
+                    <%= image_tag item.get_image, class: "img-thumbnail", size: "200x200" %>
                     <% end %></td>
                   <br>
                     <td><%= item.name %></td>
@@ -20,3 +20,5 @@
                 </div>
             </tr>
   </div>
+  
+  

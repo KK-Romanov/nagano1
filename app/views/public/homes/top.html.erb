@@ -8,13 +8,13 @@
         </h4>
     </div>
     <div class = "container mt-5">
-    <h1><b>新着商品</h1>
+    <h1><b>新着商品</h1> 
     <div class = "col-md-7">
         <% @items.each do |item| %>
         <div class ="blog-box">
         <div class = "col d-flex">
             <%=link_to item_path(item.id) do %>
-              <%= image_tag item.get_image, size: "125x125" %>
+              <%= image_tag item.get_image, class: "img-rounded", size: "140x140" %>
               <%= item.name %><br>
               <td>￥</td>
               <%= item.price %>
@@ -25,10 +25,7 @@
      </div>
 </div>
 
-    <%= link_to "全ての商品を見る>",lot_path %>
-</div>    
 </div>
-    <!-- %= image_tag @item.image, size: "200x200" %>-->
-    <!--<p>%= @items.name %></p>-->
-    <!-- <p>%= @item.price %>円<br></p>-->
-    
+    <br>
+        <%= link_to "全ての商品を見る>",lot_path %>
+    </p>
