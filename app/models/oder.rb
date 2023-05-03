@@ -1,6 +1,7 @@
 class Oder < ApplicationRecord
-     
+     belongs_to :customer
      has_many :order_details, dependent: :destroy
+     has_many :items, through: :order_details
  
      enum payment: 
      {credit_card: 0, transfer: 1}

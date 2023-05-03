@@ -1,10 +1,70 @@
-<h1>注文情報入力</h1>
-<p>商品名</p>
+<div class="container mt-5">
+    
+    <h1>注文情報入力</h1>
+        <p></p>
+        
+        <p>商品名</p>
+        <%= @customer.last_name + " " + @customer.first_name %>
+        
+    <div>
+        <%= form_with model: @order, url: orders_confirm_path do |f| %>
+        <b>支払情報</b>
+        <p></p>
+        <% %>
+        <%= f.radio_button :payment, "credit_card" %>
+        <%= f.label :payment_credit_card, "クレジットカード" %>
+        
+        <%= f.radio_button :payment, "transfer" %>
+        <%= f.label :payment_transfer, "銀行振込" %>
+    </div>
 
-支払情報
 
-お届け先
 
-<%= link_to orders_path do %>
-確認画面に進む
-<% end %>
+    <b>お届け先</b>
+        <%= f.radio_button :delivery_address, 0 %>
+        <%= f.label :city, "ご自身の住所" %>
+        <br>
+        <%= @customer.postal_code %><br/>
+        <%= @customer.address %><br/>
+        <%= @customer.last_name + " " + @customer.first_name %>
+        <br>
+        <%= f.radio_button :delivery_address, 1 %>
+        <%= f.label :city, "登録済住所から選択" %>
+        <br>
+    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :name) %>
+    
+    <%= f.radio_button :delivery_address, 2 %>
+          <%= f.label :delivery_address, "新しいお届け先" %>
+          <br>
+          <div class="row">
+              <div class="col-lg-2">
+                <%= f.label :delivery_post_code, "郵便番号(ハイフンなし）" %>
+              </div>
+              <div>
+                <%= f.text_field :delivery_post_code,class:"col-lg-2" %>
+              </div>
+          </div>
+          </br>
+          <div class="row">
+              <div class="col-lg-2">
+                <%= f.label :delivery_address, "住所" %>
+              </div>
+              <div>
+                <%= f.text_field :delivery_address , class:"col-lg-4"%>
+              </div>
+          </div>
+          </br>
+          <div class="row">
+              <div class="col-lg-2">
+                <%= f.label :delivery_name, "宛名" %>
+              </div>
+              <div>
+                <%= f.text_field :delivery_name, class:"col-lg-2"%>
+              </div>
+          </div>
+          <br>
+          
+        <%= link_to orders_path do %>
+        確認画面に進む
+        <% end %>
+    <% end %>

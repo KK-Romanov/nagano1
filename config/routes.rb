@@ -39,8 +39,8 @@ Rails.application.routes.draw do
       get "/orders" => "orders#index"
       get "/orders/:id"  => "orders#show"
       get "orders/create" 
-    resources :cart_items, only: [:index, :update, :destroy, :create]  
       delete 'cart_items/destroy_all'
+    resources :cart_items, only: [:index, :update, :destroy, :create]  
     # customers 
       get "/customers/my_page" => "customers#show"
       get "/customers/information/edit"  => "customers#edit"
