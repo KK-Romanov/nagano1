@@ -1,30 +1,94 @@
-
-     <span>
+<div class = "cantainer mt-5">
+  <div class = "text-center">
      <p>
-      <b>登録情報</b>
-       <br>
-     </span>
-     
-       <tr>
-          <th>氏名</th>
-            <td><%= @customer.last_name %></td>
-            <td><%= @customer.first_name %></td>
+      <h2><b>登録情報</b></h2>
+       <div class = "row -3">
+        <div class = "col-md-2">
+         </div>
+      <div class = "col-md-8">
+        <table class="table table-hover">
+           <%= form_with model: @customer, url:  admin_customer_path(@customer.id), method: :patch do |f| %>
+          <tr>
+              <th>
+               <b>会員ID</b>
+              </th>
+              <td><%= @customer.id %></td>
              <br>
-          <th>カナ</th>
-            <td><%= @customer.last_name_kana + " " + @customer.first_name_kana %></td>
-             <br>
-          <th>郵便番号</th>
-             <td><%= @customer.postal_code %>     </td>
+          </tr>
+          <tr>
+              <th>
+                <b>氏名</b>
+             </th>
+                  <td><%= f.text_field:last_name, :size=> "11" %>
+                  <%= f.text_field :first_name, :size=> "11" %></td>
               <br>
-          <th>住所</th>
-             <td><%= @customer.address %>     </td>
-              <br>
-          <th>電話番号</th>
-             <td><%= @customer.telephone_number %>     </td>
-              <br>
-          <th>メールアドレス</th>
-             <td><%= @customer.email %></td>
-       </tr>
-       
+           </tr>
+           
+           <tr>
+              <th>
+                 <b>カナ</b>
+              </th>
+                  <td><%= f.text_field :last_name_kana, :size=> "11" %>
+                     <%= f.text_field :first_name_kana, :size=> "11" %></td>
+               <br>
+            </tr>
+            
+            <tr>
+             
+               <th>
+                  <b>郵便番号</b>
+               </th>
+                   <td><%= f.text_field :postal_code, :size=> "25" %><br></td>
+               <br>
+             </tr>
+             <tr>
+               <th>
+                  <b>住所</b>
+               </th>
+                   <td><%= f.text_field :address, :size=> "25" %></td>
+               <br>
+             </tr>
+             
+             <tr>
+               <th>
+                  <b>電話番号</b>
+               </th>
+                    <td><%= f.text_field :telephone_number, :size=> "25" %></td>
+                <br>
+              </tr>
+              
+              <tr>
+                <th>
+                   <b>メールアドレス</b>
+                </th>
+                    <td><%= f.text_field :email, :size=> "25" %></td>
+              </tr>
+              <tr>
+                <th>
+                   <b>会員ステータス</b>
+                </th>
+                      <td>
+                      <%= f.radio_button :is_deleted, true %>
+                      <%= f.label :is_deleted, "退会" %>
+                      <%= f.radio_button :is_deleted, false %>
+                      <%= f.label :is_deleted, "有効" %>
+                      </td>
+               </tr>       
+       </table>
+               <div class='form-group'>
+               <%= f.submit '変更を保存', class:"btn btn-success" %>
+               <div>
        </div>
+                      
+       <% end %> 
+       
+       <div class = "col-md-2">
+       </div>
+       
+   </div>
   </div>
+ </div>
+   
+   
+   <!--参考記述-->
+   <!--- @customer.last_name_kana + " " + @customer.first---->
