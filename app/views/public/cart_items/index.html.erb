@@ -73,7 +73,7 @@
         
     <div class="text-center">
         <% if current_customer.cart_items.any? %>
-            <%= link_to orders_new_path, class: 'btn btn-sm btn-success' do %>
+            <%= link_to new_order_path, class: 'btn btn-sm btn-success' do %>
             情報入力に進む
             <% end %>
           <% end %>

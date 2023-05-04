@@ -26,19 +26,11 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   scope module: :public do 
-  # addresses  
-      get "/addresses" => "addresses#index"
-      get "/addresses/:id/edit" => "addresses#edit"
-      get "/addresses" => "addresses#create"
-      get "/addresses/:id" => "addresses#update"
-      get "/addresses/:id" => "addresses#destroy"
+    resources :addresses, only: [:index, :edit, :update, :destroy, :create]  
     # orders 
-      get  "/orders/new" => "orders#new"
-      get "/orders/confirm"  => "orders#confirm"
+      post "/orders/confirm"  => "orders#confirm"
       get "/orders/complete" => "orders#complete"
-      get "/orders" => "orders#index"
-      get "/orders/:id"  => "orders#show"
-      get "orders/create" 
+    resources :orders, only: [:new, :index, :edit, :update, :show, :create]  
       delete 'cart_items/destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]  
     # customers 
@@ -46,7 +38,7 @@ Rails.application.routes.draw do
       get "/customers/information/edit"  => "customers#edit"
       patch "/customers/information" => "customers#update"
       get "/customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
-      patch  "/customers/withdraw" => "customers#withdraw", as:"withdraw"
+      patch  "/customers/withdraw" => "customers#withdraw", as: "withdraw"
     resources :homes
       root to: 'homes#top'
       get "/about" => "homes#about", as: "about"

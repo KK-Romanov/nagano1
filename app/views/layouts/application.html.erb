@@ -20,6 +20,9 @@
            <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
               <li>
+                  <a class="text-white navbar-brand">
+                  ようこそ、<%= current_customer.last_name %>さん！
+                  </a>
                 <%= link_to customers_my_page_path, class: "text-white navbar-brand" do %>
                  <i class="fas fa-book-open"></i>マイページ
                 <% end %>

@@ -1,44 +1,45 @@
 class Public::AddressesController < ApplicationController
   
     def index
-        @addresses = current_customer.addresses
-        @addresses = Addresses.new
+        @address = current_customer.address
+        @address = Address.new
+        @addresses = Address.all
     end
     
     def create
-        @addresses = Addresses.new(addresses_params)
-        @addresses.customer_id = current_customer.id
-        if @addresses.save
-        # redirect_to _path
-      else
-        @addresses = current_customer.addresses
+        @address = Address.new(address_params)
+        @address.customer_id = current_customer.id
+        if @address.save
+        redirect_to addresses_path
+        else
+        @address = current_customer.address
         render :index
-      end
-     end
+        end
+    end
     
      def edit
-        @addresses = Addresses.find(params[:id])
+        @address = Address.find(params[:id])
      end
     
      def update
-        @addresses = Addresses.find(params[:id])
-        if @addresses.update(addresses_params)
-        # redirect_to _path
+        @address = Address.find(params[:id])
+        if @address.update(address_params)
+         redirect_to addresses_path
         else
          render :edit
-       end
+        end
      end
     
      def destroy
-        @addresses = ShipCity.find(params[:id])
-        @addresses.destroy
-        @addresses = current_customer.addresses
+        @address = Address.find(params[:id])
+        @address.destroy
+        @address = current_customer.address
         # redirect_to _path
      end
   
    private
-   def addresses_params
-    params.require(:addresses).permit(:customer_id, :name, :postal_code, :address)
+   def address_params
+    params.require(:address).permit(:customer_id, :name, :postal_code, :address)
    end
 end
 
