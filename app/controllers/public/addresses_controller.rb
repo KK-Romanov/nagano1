@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
   
     def index
-        @address = current_customer.address
+        @address = current_customer.addresses
         @address = Address.new
         @addresses = Address.all
     end
@@ -12,13 +12,14 @@ class Public::AddressesController < ApplicationController
         if @address.save
         redirect_to addresses_path
         else
-        @address = current_customer.address
+        @address = current_customer.addresses
         render :index
         end
     end
     
      def edit
         @address = Address.find(params[:id])
+
      end
     
      def update
@@ -33,10 +34,11 @@ class Public::AddressesController < ApplicationController
      def destroy
         @address = Address.find(params[:id])
         @address.destroy
-        @address = current_customer.address
-        # redirect_to _path
+        @addresses = current_customer.addresses
+        redirect_to addresses_path
+        
+
      end
-  
    private
    def address_params
     params.require(:address).permit(:customer_id, :name, :postal_code, :address)

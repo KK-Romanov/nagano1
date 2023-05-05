@@ -23,7 +23,6 @@ class Public::CartItemsController < ApplicationController
     redirect_to cart_items_path
   end
      
-
   def create
     @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
     if @cart_item
