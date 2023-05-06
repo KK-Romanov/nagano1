@@ -1,23 +1,23 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = Oder.new
+    @order = Order.new
     @customer = current_customer
-    @cart_items = current_customer.cart_items
+    # @delivery_addresses = current_customer.delivery_addresseses
   end
 
   def confirm
-    @order = Oder.new(order_params)
+    @order = Order.new(order_params)
     @address = Address.find(params[:order][:address_id])
-    @order.postal_code = current_customer.postal_code
-    @order.address = current_customer.address
-    @order.name = current_customer.first_name + current_customer.last_name
+    @cart_items = current_customer.cart_items
+    # @order.address = current_customer.address
+    # @order.name = current_customer.first_name + current_customer.last_name
   end
 
   def complete
   end
 
   def create
-    @order = Oder.new(order_params)
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     if @order.save!
       @cart_items = current_customer.cart_products
@@ -30,12 +30,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    oders = current_customer.oders
+    @orders = current_customer.orders
+    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
-    @order = Oder.find(params[:id])
-		@order_details = @order.order_details
+    @order = Order.find(params[:id])
+  # @order_details = @order.order_details
   end
   
   def order_params

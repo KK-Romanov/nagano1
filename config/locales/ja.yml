@@ -1,6 +1,6 @@
   ja:
     enums:
-      oder:
+      order:
         payment:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
@@ -10,7 +10,7 @@
           in_production: "製作中"
           preparing: "発送準備中"
           shipped: "発送済み" 
-      oder_details:
+      order_details:
         production_status:
           production_not_possible: "製作不可"
           production_pending: "製作待ち"

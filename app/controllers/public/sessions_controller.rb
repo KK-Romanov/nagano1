@@ -70,9 +70,11 @@ end
     #     @customer = Customer.find_by(email: params[:customer][:email])
     #     ## アカウントを取得できなかった場合、このメソッドを終了する
     #     return if !@customer
+    
     #     ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
     #     if @customer.valid_password?(params[:customer][:password])
     #     ## 【処理内容3】
+    
     #     #   1」と「2」の処理が真(true)だった場合、そのアカウントのis_deletedカラムに格納されている値を確認し
     #     #     trueだった場合、退会しているのでサインアップ画面に遷移する
     #     #     falseだった場合、退会していないのでそのままcreateアクションを実行させる処理を実行する

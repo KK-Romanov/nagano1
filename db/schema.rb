@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_14_132048) do
+ActiveRecord::Schema.define(version: 2023_05_06_115945) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,8 +105,8 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
     t.boolean "is_active", default: true, null: false
   end
 
-  create_table "oder_details", force: :cascade do |t|
-    t.integer "oder_id", null: false
+  create_table "order_details", force: :cascade do |t|
+    t.integer "order_id", null: false
     t.integer "item_id", null: false
     t.integer "amount", null: false
     t.integer "tax_price", null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "oders", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "delivery_postal_code", null: false
     t.string "delivery_address", null: false
@@ -124,6 +124,11 @@ ActiveRecord::Schema.define(version: 2023_04_14_132048) do
     t.integer "total_payment", null: false
     t.integer "postage", null: false
     t.integer "order_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
