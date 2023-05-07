@@ -59,14 +59,14 @@
         </table>
       </div>
   </div>
-  <div class="row">
+  
     <h3>支払方法</h3>
       <%= @order.payment_i18n %>
-      
-      <br>
+          <br>
     <h3>お届け先</h3>
-      <div><%= @current_customer.postal_code + " " + @current_customer.address %></div>
-      <div><%= @current_customer.last_name + " " + @current_customer.first_name  %></div>
+      <div><%= @address.postal_code %> <%= @address.address %></div>
+      <div><%= @address.name %></div>
+
     <%= form_with model: @order, url: orders_path do |f| %>
       <%= f.hidden_field :total_payment, :value => (@total_x + 800) %>
       <%= f.hidden_field :payment, :value => @order.payment %>
@@ -81,4 +81,3 @@
         <%= f.submit "注文を確定する", class: "btn btn-success btn-lg text-center" %>
       </div>
     <% end %>
-</div>
