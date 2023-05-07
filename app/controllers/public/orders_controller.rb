@@ -9,8 +9,9 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @address = Address.find(params[:order][:address_id])
     @cart_items = current_customer.cart_items
-    # @order.address = current_customer.address
-    # @order.name = current_customer.first_name + current_customer.last_name
+    @order.customer_id = current_customer.id
+    @order.payment = params[:order][:payment]
+    @postage = 800
   end
 
   def complete
@@ -19,28 +20,33 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    if @order.save!
-      @cart_items = current_customer.cart_products
-      @cart_products.destroy_all
-      redirect_to orders_complete_path
-    else
-      render "new"
-    end
+    # binding.pry
+    @order.save!
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      order_detail = OrderDetail.new
+      order_detail.order_id = @order.id
+      order_detail.item_id = cart_item.item_id
+      order_detail.amount = cart_item.amount
+      order_detail.tax_price = cart_item.item.price * 1.08
+      order_detail.save 
+    end  
+    @cart_items.destroy_all
+    redirect_to orders_complete_path
     
+   
   end
 
   def index
-    @orders = current_customer.orders
     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
     @order = Order.find(params[:id])
-  # @order_details = @order.order_details
   end
   
   def order_params
-  params.require(:order).permit(:customer_id, :delivery_postal_code, :delivery_address, :delivery_name,
+  params.require(:order).permit(:delivery_postal_code, :delivery_address, :delivery_name,
     :payment, :total_payment, :postage, :order_status)
   end
 
