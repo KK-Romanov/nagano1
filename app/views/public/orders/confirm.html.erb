@@ -64,8 +64,8 @@
       <%= @order.payment_i18n %>
           <br>
     <h3>お届け先</h3>
-      <div><%= @address.postal_code %> <%= @address.address %></div>
-      <div><%= @address.name %></div>
+      <div><%= @order.delivery_postal_code %> <%= @order.delivery_address %></div>
+      <div><%= @order.delivery_name  %></div>
 
     <%= form_with model: @order, url: orders_path do |f| %>
       <%= f.hidden_field :total_payment, :value => (@total_x + 800) %>

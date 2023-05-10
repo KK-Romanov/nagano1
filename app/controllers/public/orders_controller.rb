@@ -12,6 +12,24 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.payment = params[:order][:payment]
     @postage = 800
+    select_address = params[:order][:select_address]
+    if select_address == '0' 
+      puts 'test1'
+      @order.delivery_postal_code = current_customer.postal_code
+      @order.delivery_address = current_customer.address
+      @order.delivery_name = current_customer.last_name + current_customer.first_name
+    elsif select_address == '1'
+      puts 'test2'
+      address = Address.find(params[:order][:address_id])
+      @order.delivery_postal_code = address.postal_code
+       @order.delivery_address =  address.address
+       @order.delivery_name =  address.name
+    end
+    unless @order.valid?
+      flash[:danger] = "お届け先の内容に不備があります<br>・#{@order.errors.full_messages.join('<br>・')}"
+      p @order.errors.full_messages
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def complete
@@ -20,6 +38,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @postage = 800
     # binding.pry
     @order.save!
     @cart_items = current_customer.cart_items

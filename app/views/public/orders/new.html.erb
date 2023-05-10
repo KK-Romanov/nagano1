@@ -5,8 +5,7 @@
       <h2>注文情報入力</h2>
       <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
       <h4><b>支払い方法</b></h4>
-      <!--<#%= f.radio_button :payment, 0 %>クレジットカード<br>-->
-      <!--<#%= f.radio_button :payment, 1 %>銀行振込-->
+      <!--keyを付け加えること-->
       <%= f.radio_button :payment, Order.payments.key(0) %>
       <%= f.label :payment_credit_card, Order.payments_i18n[:credit_card] %>
 
@@ -15,12 +14,15 @@
       
       <h4><b>お届け先</b></h4>
       <%= f.radio_button :select_address, 0, checked: true , class: "ml-4"  %>ご自身の住所<br>
-      <div><%= @current_customer.postal_code + " " + @current_customer.address %></div>
-      <div><%= @current_customer.last_name + " " + @current_customer.first_name  %></div>
+      <div class="ml-5"><%= "〒#{current_customer.postal_code} #{current_customer.address}" %></div>
+      <div class="ml-5"><%= current_customer.last_name + current_customer.first_name  %></div>
       
+        <% if current_customer.address.empty? %>
+        <% else %>
         <%= f.radio_button :select_address, 1, class: "ml-4 mt-3"  %>登録済み住所から選択<br>
         <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id ,
         :address_display), size: 50 %>
+         <% end %>
         <br>
         <%= f.radio_button :select_address, 2, class: "ml-4 mt-3"  %>新しいお届け先<br>
       <table class="ml-5">
@@ -42,3 +44,6 @@
     </div>
   </div>
 </div>
+
+
+     
