@@ -12,12 +12,8 @@
         <tr><th class="table-active" style="width:20%">支払い方法</th><td><%= @order.payment_i18n %></td></tr>
         <tr><th class="table-active" style="width:20%"><%= f.label :order_status, "注文ステータス" %></th>
           <td>
-            <!--<#% if @order.発送準備中? || @order.発送済み?  %>-->
-            <!--<#%= f.select :order_status,Order.order_statuses.keys %>-->
-            <!--<#% else %>-->
-            <!--<#%= f.select :order_status,Order.order_statuses.keys, {disabled: ["発送準備中","発送済み"]} %>-->
-            <!--<#% end %>-->
-            <!--<#%= f.submit "更新", class: "btn btn-success" %>-->
+            <%= f.select :order_status,Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+            <%= f.submit "更新", class: "btn btn-success" %>
           </td>
         </tr>
     </table>
@@ -47,7 +43,8 @@
             <td class="align-middle">
               <%= form_with model: order_detail, url: admin_order_detail_path, method: :patch, local: true do |f| %>
               <%= f.hidden_field :order_detail_id, :value => order_detail.id %>
-              <%= f.select :production_status, OrderDetail.production_statuses.keys %>
+              <%= f.select :production_status, OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_details.production_status.#{k}"), k]} %>
+              <!--t method-->
               <%= f.submit "更新", class: "btn btn-success" %>
               <% end %>
             </td>
@@ -61,17 +58,15 @@
         <tr>
           <th class="table-active" style="width:50%">商品合計</th>
           <td>
-            <% @add_tax_total_payment = with_tax_price(@order.total_payment) %>
-            <%= @add_tax_total_payment %>円
-            <!--<#% @order.total_payment = order_details_with_tax_price(@order.total_payment) %>-->
+          
+            <%= @total %>円
           </td>
         </tr>
         <tr><th class="table-active" style="width:50%">送料</th><td><%= @postage %>円</td></tr>
         <tr>
           <th class="table-active" style="width:50%">請求金額合計</th>
           <td>
-            <!--<#%= @order.total_payment_add_postage = @add_tax_total_payment + @postage %>-->
-            <%= @total_x_add_postage %> 円
+             <%= @total + @postage %>円
           </td>
         </tr>
       </table>
@@ -79,3 +74,5 @@
   </div>
 </div>
 
+      
+            

@@ -24,7 +24,7 @@ class Public::CustomersController < ApplicationController
   
   # 顧客の退会処理(ステータスの更新)
   def withdraw
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @customer.update(is_deleted: true)
     reset_session
