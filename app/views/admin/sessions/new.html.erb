@@ -1,5 +1,5 @@
 <div class = "containar mt-5">
-  
+  <div class = "text-center">
 <h2>管理者ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -19,10 +19,11 @@
   <!--    %= f.label :remember_me %>-->
   <!--  </div>-->
   <!--% end %>-->
-
+<br>
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
 <% end %>
 
 <%= render "admin/shared/links" %>
+</div>
