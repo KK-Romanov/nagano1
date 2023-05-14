@@ -3,21 +3,25 @@ class Admin::OrderDetailsController < ApplicationController
 def update
     @order = Order.find(params[:id])
     @order_detail = OrderDetail.find(params[:order_detail][:order_detail_id])
+
+    is_updated = true
+    
     if @order_detail.update(order_detail_params)
-      if @order.order_details.pluck(:production_status).include?("製作中")
-         @order.order_status = 2
-         @order.save
-      elsif
-        @order.order_details.pluck(:production_status).all?{|status|status == "製作完了"}
-        @order.order_status = 3
-        @order.save
+       #ステータス変更処理　
+      if order_detail_params[:production_status] == "in_production" 
+       @order.update(order_status: 2)
       end
+      @order.order_details.each do |order_detail|
+        if order_detail.production_status != "production_complete"
+          is_updated = false
+        end
+       end
+        @order.update(order_status: 3) if is_updated
+         
+    end
       flash[:success] = "制作ステータスを変更しました。"
       redirect_to admin_order_path(@order)
-    else
-      redirect_back(fallback_location: root_path)
     end
-end
 
   private
 

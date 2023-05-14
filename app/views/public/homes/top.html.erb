@@ -7,14 +7,15 @@
         購入するには会員登録が必要になります。</p>
         </h4>
     </div>
-    <div class = "container mt-5">
+    <div class = "container new-item">
     <h1><b>新着商品</h1> 
-    <div class = "col-md-7">
-        <% @items.each do |item| %>
+    <!--<div class = "col-md-5">-->
+        <% @items.first(7).each do |item| %>
         <div class ="blog-box">
         <div class = "col d-flex">
             <%=link_to item_path(item.id) do %>
               <%= image_tag item.get_image, class: "img-rounded", size: "140x140" %>
+              <br>
               <%= item.name %><br>
               <td>￥</td>
               <%= item.price %>
@@ -29,3 +30,4 @@
     <br>
         <%= link_to "全ての商品を見る>",lot_path %>
     </p>
+

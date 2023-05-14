@@ -26,7 +26,9 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
     if @cart_item
-      @cart_item.update(amount: @cart_item.amount + params[:cart_item][:amount])
+      # @cart_item.(amount: @cart_item.amount += params[:cart_item][:amount].to_i)
+       @cart_item.amount += params[:cart_item][:amount].to_i
+       @cart_item.save
     else
       @cart_item = CartItem.new(cart_item_params) # 空のモデルを作成（ストロングパラメーターが必要）
       @cart_item.customer_id = current_customer.id # 親モデルのidを指定
@@ -36,10 +38,6 @@ class Public::CartItemsController < ApplicationController
       
     end
     
-    
-    
-    # @cart_items = current_customer.cart_items
-    # if @
      redirect_to cart_items_path
     # binding.pry
   end

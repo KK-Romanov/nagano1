@@ -54,8 +54,13 @@
   </tbody>
 </table>
     <div class="row">
+        <% if @cart_items.empty? %>
+      <div style="height: 200px;"></div>
+      <div class="text-center">
+      <h5>カートに商品が入っておりません</h5>
           <%= link_to items_path, class: 'btn btn-primary' do %>
           買い物を続ける
+          <% end %>
           <% end %>
     </div>  
      </div>
