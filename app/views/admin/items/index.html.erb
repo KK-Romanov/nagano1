@@ -2,10 +2,8 @@
   
       <h1>商品一覧</h1>
       <span>
-      
-       <%= link_to "商品追加", new_admin_item_path, 
-        class: "badge rounded-pill bg-dark text-warning" %>
-      
+           <%= link_to "商品追加", new_admin_item_path, 
+            class: "badge rounded-pill bg-dark text-warning" %>
       </span>
 <table class = "table">
     <thead>
@@ -37,5 +35,10 @@
       </tbody>
   
      <% end %>
-
+            <table class = "paginate">
+              <%= paginate @items %>
+            </table>
 </div>
+   
+      
+   

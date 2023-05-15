@@ -21,7 +21,7 @@ def update
     end
       flash[:success] = "制作ステータスを変更しました。"
       redirect_to admin_order_path(@order)
-    end
+  end
 
   private
 

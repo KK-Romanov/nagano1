@@ -6,7 +6,7 @@ class Admin::ItemsController < ApplicationController
 
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).order(created_at: :desc)
     @genre = Genre.new
     
   end

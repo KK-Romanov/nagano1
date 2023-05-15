@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
     @item = Item.new
-    @items = Item.page(params[:page])
+    @items = Item.page(params[:page]).order(created_at: :desc)
   end
 
   def show

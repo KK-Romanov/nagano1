@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
     @item = Item.new
-    @items = Item.all
+    @items = Item.all.order(created_at: :desc)
   
   end
 
@@ -15,4 +15,3 @@ class Public::HomesController < ApplicationController
 
 
 end
-    # @item = Item.find(params[:id])
