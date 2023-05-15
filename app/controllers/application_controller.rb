@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
       top_path
     end
   end
+
+  def after_sign_out_path_for(resource)
+       flash[:notice] = "Signed out successfully."
+    case resource
+     when :admin   # ログアウト時はシンボルが返ってくる
+      new_admin_session_path
+    end
+  end
+    
      
   protected
 
